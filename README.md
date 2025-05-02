@@ -29,6 +29,8 @@ Un site conçu pour vous aider à maitriser les concepts de la Programmation Ori
 2. Ouvrez le fichier HTML dans votre navigateur pour explorer les exemples et exercices.
 3. Modifiez les fichiers JavaScript pour expérimenter avec les concepts de POO.
 
+![Capture d'écran de l'application](screenshot.png)
+
 ## 📖 Concepts abordés
 
 - Classes et objets
