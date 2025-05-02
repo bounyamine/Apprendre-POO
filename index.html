@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apprendre la POO en Java - Tutoriel Interactif</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet" />
+</head>
+<body>
+    
+    <nav>
+        <div class="nav-container">
+            <div class="logo">POO Java</div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="#intro" class="nav-link active" onclick="showSection('intro')">Introduction</a>
+                <a href="#classes-objets" class="nav-link" onclick="showSection('classes-objets')">Classes & Objets</a>
+                <a href="#encapsulation" class="nav-link" onclick="showSection('encapsulation')">Encapsulation</a>
+                <a href="#heritage" class="nav-link" onclick="showSection('heritage')">Héritage</a>
+                <a href="#polymorphisme" class="nav-link" onclick="showSection('polymorphisme')">Polymorphisme</a>
+                <a href="#quiz" class="nav-link" onclick="showSection('quiz')">Quiz</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <header>
+        <h1>Apprendre la POO en Java</h1>
+        <p>Un tutoriel interactif pour maîtriser les concepts de la Programmation Orientée Objet</p>
+    </header>
+    
+    <main>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress"></div>
+        </div>
+        
+        <section id="intro" class="section active">
+            <h2>Introduction à la POO</h2>
+            <p>La <strong>Programmation Orientée Objet (POO)</strong> est un paradigme de programmation qui utilise des "objets" pour modéliser des données et des comportements. Java est un langage entièrement orienté objet.</p>
+            
+            <div class="highlight">
+                <h3>Les 4 piliers de la POO</h3>
+                <ol>
+                    <li><strong>Classes et Objets</strong> - Les objets sont des instances de classes, qui sont des modèles pour créer des objets.</li>
+                    <li><strong>Encapsulation</strong> - Protection des données en limitant l'accès direct aux attributs.</li>
+                    <li><strong>Héritage</strong> - Une classe peut hériter des attributs et méthodes d'une autre classe.</li>
+                    <li><strong>Polymorphisme</strong> - Un objet peut prendre différentes formes selon le contexte.</li>
+                </ol>
+            </div>
+            
+            <p>Contrairement à la programmation procédurale qui se concentre sur les procédures (fonctions), la POO se concentre sur les objets qui contiennent à la fois des données et des méthodes qui opèrent sur ces données.</p>
+            
+            <h3>Avantages de la POO</h3>
+            <ul>
+                <li>Modularité - le code est divisé en modules indépendants</li>
+                <li>Réutilisabilité - les classes peuvent être réutilisées dans différentes parties du programme</li>
+                <li>Facilité de maintenance - les modifications sont isolées aux classes concernées</li>
+                <li>Sécurité - l'encapsulation protège les données sensibles</li>
+            </ul>
+            
+            <div class="warning">
+                <p><strong>Note:</strong> La POO n'est pas toujours la meilleure approche pour tous les problèmes. Certains problèmes simples peuvent être résolus plus efficacement avec une approche procédurale.</p>
+            </div>
+            
+            <button class="btn" onclick="showSection('classes-objets')">Continuer vers Classes & Objets →</button>
+        </section>
+        
+        <section id="classes-objets" class="section">
+            <h2>Classes & Objets</h2>
+            <p>Les classes et les objets sont les concepts fondamentaux de la POO.</p>
+            
+            <h3>Qu'est-ce qu'une classe?</h3>
+            <p>Une classe est un <strong>modèle</strong> ou un <strong>plan</strong> qui définit les attributs (données) et les méthodes (comportements) que les objets de cette classe auront.</p>
+            
+            <pre><code class="language-java">
+public class Voiture {
+    // Attributs (variables d'instance)
+    private String couleur;
+    private int vitesse;
+    private boolean demarree;
+    
+    // Constructeur
+    public Voiture(String couleur) {
+        this.couleur = couleur;
+        this.vitesse = 0;
+        this.demarree = false;
+    }
+    
+    // Méthodes
+    public void demarrer() {
+        this.demarree = true;
+        System.out.println("La voiture démarre!");
+    }
+    
+    public void accelerer() {
+        if (demarree) {
+            this.vitesse += 10;
+            System.out.println("Vitesse: " + this.vitesse + " km/h");
+        } else {
+            System.out.println("Vous devez d'abord démarrer la voiture!");
+        }
+    }
+    
+    public void freiner() {
+        if (this.vitesse > 0) {
+            this.vitesse -= 10;
+            if (this.vitesse < 0) this.vitesse = 0;
+            System.out.println("Vitesse: " + this.vitesse + " km/h");
+        }
+    }
+}
+            </code></pre>
+            
+            <h3>Qu'est-ce qu'un objet?</h3>
+            <p>Un objet est une <strong>instance</strong> d'une classe. Si la classe est un plan, l'objet est la structure construite selon ce plan.</p>
+            
+            <pre><code class="language-java">
+// Création d'objets de la classe Voiture
+Voiture maVoiture = new Voiture("rouge");
+Voiture voitureDeSport = new Voiture("bleu");
+
+// Utilisation des objets
+maVoiture.demarrer();
+maVoiture.accelerer();  // Vitesse: 10 km/h
+maVoiture.accelerer();  // Vitesse: 20 km/h
+
+voitureDeSport.accelerer();  // "Vous devez d'abord démarrer la voiture!"
+voitureDeSport.demarrer();
+voitureDeSport.accelerer();  // Vitesse: 10 km/h
+            </code></pre>
+            
+            <h3>Démonstration Interactive</h3>
+            <div class="demo-container">
+                <div class="car-demo">
+                    <div class="road">
+                        <div class="road-line" style="left: 10px"></div>
+                        <div class="road-line" style="left: 60px"></div>
+                        <div class="road-line" style="left: 110px"></div>
+                        <div class="road-line" style="left: 160px"></div>
+                        <div class="road-line" style="left: 210px"></div>
+                        <div class="road-line" style="left: 260px"></div>
+                        <div class="road-line" style="left: 310px"></div>
+                        <div class="road-line" style="left: 360px"></div>
+                        <div class="road-line" style="left: 410px"></div>
+                        <div class="road-line" style="left: 460px"></div>
+                        <div class="road-line" style="left: 510px"></div>
+                        <div class="road-line" style="left: 560px"></div>
+                    </div>
+                    <div id="car" class="car">
+                        <div id="car-body" class="car-body" style="background-color: #e74c3c"></div>
+                        <div class="car-cabin"></div>
+                        <div class="car-wheel"></div>
+                        <div class="car-wheel"></div>
+                    </div>
+                </div>
+                
+                <div class="status-display">
+                    <strong>État de la voiture:</strong>
+                    <p><strong>Couleur:</strong> <span id="car-color">Rouge</span></p>
+                    <p><strong>Démarrée:</strong> <span id="car-started">Non</span></p>
+                    <p><strong>Vitesse:</strong> <span id="car-speed">0</span> km/h</p>
+                </div>
+                
+                <div class="control-panel">
+                    <button id="start-btn" class="btn">Démarrer</button>
+                    <button id="accelerate-btn" class="btn btn-secondary">Accélérer</button>
+                    <button id="brake-btn" class="btn btn-warning">Freiner</button>
+                    
+                    <div style="margin-left: auto;">
+                        <div style="margin-bottom: 0.5rem;"><strong>Couleur:</strong></div>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <div class="color-btn active" style="background-color: #e74c3c" data-color="Rouge" data-hex="#e74c3c"></div>
+                            <div class="color-btn" style="background-color: #3498db" data-color="Bleu" data-hex="#3498db"></div>
+                            <div class="color-btn" style="background-color: #2ecc71" data-color="Vert" data-hex="#2ecc71"></div>
+                            <div class="color-btn" style="background-color: #f1c40f" data-color="Jaune" data-hex="#f1c40f"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Points clés à retenir</h3>
+            <ul>
+                <li>Une classe définit le modèle, un objet est une instance concrète de ce modèle</li>
+                <li>Les attributs stockent l'état de l'objet (couleur, vitesse, etc.)</li>
+                <li>Les méthodes définissent le comportement de l'objet (démarrer, accélérer, etc.)</li>
+                <li>Le constructeur est une méthode spéciale appelée lors de la création d'un objet</li>
+                <li>Le mot-clé <code>this</code> fait référence à l'objet actuel</li>
+            </ul>
+            
+            <button class="btn" onclick="showSection('encapsulation')">Continuer vers Encapsulation →</button>
+        </section>
+        
+        <section id="encapsulation" class="section">
+            <h2>Encapsulation</h2>
+            <p>L'encapsulation est le principe de <strong>cacher les détails d'implémentation</strong> et de ne fournir qu'une interface contrôlée pour interagir avec l'objet.</p>
+            
+            <h3>Principes de l'encapsulation</h3>
+            <ul>
+                <li>Rendre les attributs privés (avec le mot-clé <code>private</code>)</li>
+                <li>Fournir des méthodes publiques pour accéder aux attributs (getters et setters)</li>
+                <li>Contrôler l'accès aux données (validation, calculs, formatage)</li>
+            </ul>
+            
+            <pre><code class="language-java">
+public class CompteBancaire {
+    // Attributs privés
+    private String proprietaire;
+    private double solde;
+    private String numeroCpte;
+    
+    // Constructeur
+    public CompteBancaire(String proprietaire, String numeroCpte, double soldeInitial) {
+        this.proprietaire = proprietaire;
+        this.numeroCpte = numeroCpte;
+        
+        // Validation dans le constructeur
+        if (soldeInitial < 0) {
+            this.solde = 0;
+            System.out.println("Solde initial ne peut pas être négatif. Initialisé à 0.");
+        } else {
+            this.solde = soldeInitial;
+        }
+    }
+    
+    // Getters (accesseurs)
+    public String getProprietaire() {
+        return proprietaire;
+    }
+    
+    public double getSolde() {
+        return solde;
+    }
+    
+    public String getNumeroCpte() {
+        // Masquer partiellement le numéro pour des raisons de sécurité
+        return "XXXX-XXXX-" + numeroCpte.substring(numeroCpte.length() - 4);
+    }
+    
+    // Setters (mutateurs) avec validation
+    public void setProprietaire(String proprietaire) {
+        if (proprietaire != null && !proprietaire.isEmpty()) {
+            this.proprietaire = proprietaire;
+        } else {
+            System.out.println("Le nom du propriétaire ne peut pas être vide.");
+        }
+    }
+    
+    // Pas de setter pour le numéro de compte (immutable)
+    
+    // Méthodes pour manipuler les données
+    public void deposer(double montant) {
+        if (montant > 0) {
+            this.solde += montant;
+            System.out.println("Dépôt de " + montant + "€ effectué.");
+            System.out.println("Nouveau solde: " + this.solde + "€");
+        } else {
+            System.out.println("Le montant du dépôt doit être positif.");
+        }
+    }
+    
+    public void retirer(double montant) {
+        if (montant > 0) {
+            if (this.solde >= montant) {
+                this.solde -= montant;
+                System.out.println("Retrait de " + montant + "€ effectué.");
+                System.out.println("Nouveau solde: " + this.solde + "€");
+            } else {
+                System.out.println("Solde insuffisant pour ce retrait.");
+            }
+        } else {
+            System.out.println("Le montant du retrait doit être positif.");
+        }
+    }
+}
+            </code></pre>
+            
+            <div class="demo-container">
+                <div class="tabs">
+                    <div class="tab active" onclick="switchTab('bank', this)">Simulation compte bancaire</div>
+                    <div class="tab" onclick="switchTab('code', this)">Code Java</div>
+                </div>
+                
+                <div class="tab-content active" id="bank-tab">
+                    <div class="status-display">
+                        <p><strong>Propriétaire:</strong> <span id="account-owner">Jean Dupont</span></p>
+                        <p><strong>Numéro de compte:</strong> <span id="account-number">XXXX-XXXX-5678</span></p>
+                        <p><strong>Solde:</strong> <span id="account-balance">1000</span> €</p>
+                    </div>
+                    
+                    <div class="control-panel">
+                        <div>
+                            <input type="number" id="transaction-amount" placeholder="Montant" min="0" style="padding: 0.5rem; border-radius: 4px; border: 1px solid #ddd;">
+                            <button id="deposit-btn" class="btn btn-secondary">Déposer</button>
+                            <button id="withdraw-btn" class="btn btn-warning">Retirer</button>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <input type="text" id="new-owner" placeholder="Nouveau propriétaire" style="padding: 0.5rem; border-radius: 4px; border: 1px solid #ddd;">
+                            <button id="change-owner-btn" class="btn">Changer propriétaire</button>
+                        </div>
+                    </div>
+                    
+                    <div id="transaction-log" style="margin-top: 1rem; max-height: 150px; overflow-y: auto; padding: 0.5rem; background-color: #f5f5f5; border-radius: 4px;">
+                        <p>Compte créé avec un solde initial de 1000€.</p>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="code-tab">
+                    <pre><code class="language-java">
+// Exemple d'utilisation de la classe CompteBancaire
+CompteBancaire compte = new CompteBancaire("Jean Dupont", "1234-5678-5678", 1000);
+
+// Accès contrôlé aux données
+System.out.println("Propriétaire: " + compte.getProprietaire());
+System.out.println("Numéro de compte: " + compte.getNumeroCpte()); // Affiche "XXXX-XXXX-5678"
+System.out.println("Solde: " + compte.getSolde() + "€");
+
+// Tentative de modification avec validation
+compte.setProprietaire(""); // Erreur: "Le nom du propriétaire ne peut pas être vide."
+compte.setProprietaire("Marie Dupont"); // OK
+
+// Opérations sur le compte
+compte.deposer(-100); // Erreur: "Le montant du dépôt doit être positif."
+compte.deposer(500);  // "Dépôt de 500€ effectué. Nouveau solde: 1500€"
+compte.retirer(2000); // Erreur: "Solde insuffisant pour ce retrait."
+compte.retirer(300);  // "Retrait de 300€ effectué. Nouveau solde: 1200€"
+                    </code></pre>
+                </div>
+            </div>
+            
+            <h3>Avantages de l'encapsulation</h3>
+            <ul>
+                <li><strong>Protection des données</strong> - Empêche les modifications accidentelles ou malveillantes</li>
+                <li><strong>Contrôle de l'accès</strong> - Permet de valider les données avant de les modifier</li>
+                <li><strong>Flexibilité</strong> - Permet de modifier l'implémentation interne sans affecter le code qui utilise la classe</li>
+                <li><strong>Maintenabilité</strong> - Facilite la détection et la correction des erreurs</li>
+            </ul>
+            
+            <div class="highlight">
+                <p><strong>Bonnes pratiques:</strong></p>
+                <ul>
+                    <li>Toujours déclarer les attributs en <code>private</code> sauf raison particulière</li>
+                    <li>Utiliser des getters/setters pour contrôler l'accès aux données</li>
+                    <li>Ajouter de la validation dans les setters pour garantir l'intégrité des données</li>
+                <li>Ne pas créer de setters pour les attributs qui ne doivent pas être modifiés après la création</li>
+            </ul>
+            </div>
+            
+            <button class="btn" onclick="showSection('heritage')">Continuer vers Héritage →</button>
+        </section>
+        
+        <section id="heritage" class="section">
+            <h2>Héritage</h2>
+            <p>L'héritage est un mécanisme qui permet à une classe d'<strong>acquérir les propriétés et comportements</strong> d'une autre classe. C'est une relation "est un" entre les classes.</p>
+            
+            <h3>Terminologie</h3>
+            <ul>
+                <li><strong>Superclasse (classe parent)</strong>: La classe dont les caractéristiques sont héritées</li>
+                <li><strong>Sous-classe (classe enfant)</strong>: La classe qui hérite des caractéristiques</li>
+                <li><strong>mot-clé "extends"</strong>: Utilisé pour établir la relation d'héritage</li>
+                <li><strong>mot-clé "super"</strong>: Permet d'accéder aux membres de la superclasse</li>
+            </ul>
+            
+            <pre><code class="language-java">
+// Classe parent (superclasse)
+public class Vehicule {
+    protected String marque;
+    protected String couleur;
+    protected int vitesse;
+    
+    public Vehicule(String marque, String couleur) {
+        this.marque = marque;
+        this.couleur = couleur;
+        this.vitesse = 0;
+    }
+    
+    public void accelerer() {
+        this.vitesse += 5;
+        System.out.println("Vitesse actuelle: " + this.vitesse + " km/h");
+    }
+    
+    public void freiner() {
+        if (this.vitesse >= 5) {
+            this.vitesse -= 5;
+        } else {
+            this.vitesse = 0;
+        }
+        System.out.println("Vitesse actuelle: " + this.vitesse + " km/h");
+    }
+    
+    public void klaxonner() {
+        System.out.println("Beep beep!");
+    }
+    
+    // Getters et setters
+    public String getMarque() { return marque; }
+    public String getCouleur() { return couleur; }
+    public int getVitesse() { return vitesse; }
+}
+
+// Classe enfant (sous-classe)
+public class Voiture extends Vehicule {
+    private int nombrePortes;
+    private boolean climatisation;
+    
+    public Voiture(String marque, String couleur, int nombrePortes) {
+        // Appel du constructeur parent
+        super(marque, couleur);
+        this.nombrePortes = nombrePortes;
+        this.climatisation = false;
+    }
+    
+    // Nouvelle méthode spécifique à la voiture
+    public void activerClimatisation() {
+        this.climatisation = true;
+        System.out.println("Climatisation activée.");
+    }
+    
+    // Redéfinition (override) d'une méthode de la classe parent
+    @Override
+    public void accelerer() {
+        // La voiture accélère plus vite qu'un véhicule standard
+        this.vitesse += 10;
+        System.out.println("La voiture accélère! Vitesse: " + this.vitesse + " km/h");
+    }
+    
+    // Getters spécifiques
+    public int getNombrePortes() { return nombrePortes; }
+    public boolean hasClimatisation() { return climatisation; }
+}
+
+// Autre classe enfant
+public class Moto extends Vehicule {
+    private boolean sidecar;
+    
+    public Moto(String marque, String couleur, boolean sidecar) {
+        super(marque, couleur);
+        this.sidecar = sidecar;
+    }
+    
+    @Override
+    public void klaxonner() {
+        System.out.println("Tut tut!");
+    }
+    
+    @Override
+    public void accelerer() {
+        // La moto accélère encore plus vite
+        this.vitesse += 15;
+        System.out.println("La moto accélère rapidement! Vitesse: " + this.vitesse + " km/h");
+    }
+    
+    public boolean hasSidecar() { return sidecar; }
+}
+            </code></pre>
+            
+            <div class="demo-container">
+                <div class="inheritance-demo">
+                    <div class="vehicle-card">
+                        <div class="vehicle-title">Véhicule (parent)</div>
+                        <div class="vehicle-props">
+                            <p><strong>Attributs:</strong></p>
+                            <ul>
+                                <li>marque</li>
+                                <li>couleur</li>
+                                <li>vitesse</li>
+                            </ul>
+                            <p><strong>Méthodes:</strong></p>
+                            <ul>
+                                <li>accelerer() +5 km/h</li>
+                                <li>freiner() -5 km/h</li>
+                                <li>klaxonner() "Beep beep!"</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="arrow">↓</div>
+                     
+                    <div class="vehicle-card">
+                        <div class="vehicle-title">Voiture (enfant)</div>
+                        <div class="vehicle-props">
+                            <p><strong>Hérite de:</strong> Véhicule</p>
+                            <p><strong>Nouveaux attributs:</strong></p>
+                            <ul>
+                                <li>nombrePortes</li>
+                                <li>climatisation</li>
+                            </ul>
+                            <p><strong>Nouvelles méthodes:</strong></p>
+                            <ul>
+                                <li>activerClimatisation()</li>
+                            </ul>
+                            <p><strong>Méthodes redéfinies:</strong></p>
+                            <ul>
+                                <li>accelerer() +10 km/h</li>
+                            </ul>
+                        </div>
+                        <button id="test-car-btn" class="btn btn-secondary">Tester Voiture</button>
+                    </div>
+                    
+                    <div class="vehicle-card">
+                        <div class="vehicle-title">Moto (enfant)</div>
+                        <div class="vehicle-props">
+                            <p><strong>Hérite de:</strong> Véhicule</p>
+                            <p><strong>Nouveaux attributs:</strong></p>
+                            <ul>
+                                <li>sidecar</li>
+                            </ul>
+                            <p><strong>Méthodes redéfinies:</strong></p>
+                            <ul>
+                                <li>accelerer() +15 km/h</li>
+                                <li>klaxonner() "Tut tut!"</li>
+                            </ul>
+                        </div>
+                        <button id="test-moto-btn" class="btn btn-warning">Tester Moto</button>
+                    </div>
+                </div>
+                
+                <div id="inheritance-demo-output" class="code-block" style="height: 200px; overflow-y: auto;">
+                    <!-- Le résultat des tests sera affiché ici -->
+                    Cliquez sur "Tester Voiture" ou "Tester Moto" pour voir l'héritage en action.
+                </div>
+            </div>
+            
+            <h3>Points importants sur l'héritage</h3>
+            <ul>
+                <li>Java ne permet pas l'<strong>héritage multiple</strong> (une classe ne peut pas hériter de plusieurs classes)</li>
+                <li>Tous les constructeurs d'une classe enfant doivent appeler un constructeur de la classe parent (avec <code>super()</code>)</li>
+                <li>Les membres <code>private</code> de la classe parent ne sont pas accessibles directement dans la classe enfant</li>
+                <li>Les membres <code>protected</code> sont accessibles dans la classe enfant</li>
+                <li>Toutes les classes en Java héritent implicitement de la classe <code>Object</code></li>
+            </ul>
+            
+            <div class="warning">
+                <p><strong>Attention:</strong> Utilisez l'héritage seulement quand il existe une véritable relation "est un". Pour une relation "possède un", préférez la composition.</p>
+            </div>
+            
+            <button class="btn" onclick="showSection('polymorphisme')">Continuer vers Polymorphisme →</button>
+        </section>
+        
+        <section id="polymorphisme" class="section">
+            <h2>Polymorphisme</h2>
+            <p>Le polymorphisme permet aux objets d'<strong>adopter différentes formes</strong> selon le contexte. En Java, il existe deux types de polymorphisme:</p>
+            
+            <h3>1. Polymorphisme statique (surcharge de méthodes)</h3>
+            <p>La surcharge de méthodes permet de définir plusieurs méthodes avec le même nom mais des paramètres différents.</p>
+            
+            <pre><code class="language-java">
+public class Calculatrice {
+    // Surcharge de la méthode additionner
+    public int additionner(int a, int b) {
+        return a + b;
+    }
+    
+    public double additionner(double a, double b) {
+        return a + b;
+    }
+    
+    public int additionner(int a, int b, int c) {
+        return a + b + c;
+    }
+    
+    public String additionner(String a, String b) {
+        return a + b;  // Concaténation de chaînes
+    }
+}
+            </code></pre>
+            
+            <p>Le compilateur détermine quelle méthode appeler en fonction des arguments passés:</p>
+            
+            <pre><code class="language-java">
+Calculatrice calc = new Calculatrice();
+System.out.println(calc.additionner(5, 3));           // Appelle la 1ère version: 8
+System.out.println(calc.additionner(5.5, 3.2));       // Appelle la 2ème version: 8.7
+System.out.println(calc.additionner(5, 3, 2));        // Appelle la 3ème version: 10
+System.out.println(calc.additionner("Hello ", "World")); // Appelle la 4ème: Hello World
+            </code></pre>
+            
+            <h3>2. Polymorphisme dynamique (redéfinition de méthodes)</h3>
+            <p>La redéfinition de méthodes permet à une sous-classe de fournir une implémentation spécifique d'une méthode déjà définie dans la classe parent.</p>
+            
+            <pre><code class="language-java">
+// Utilisation du polymorphisme avec les classes précédentes
+Vehicule vehicule1 = new Vehicule("Générique", "Gris");
+Vehicule vehicule2 = new Voiture("Toyota", "Rouge", 5);  // Upcast implicite
+Vehicule vehicule3 = new Moto("Yamaha", "Noir", false);  // Upcast implicite
+
+// Les variables sont toutes de type Vehicule, mais le comportement diffère
+vehicule1.accelerer();  // "Vitesse actuelle: 5 km/h"
+vehicule2.accelerer();  // "La voiture accélère! Vitesse: 10 km/h"
+vehicule3.accelerer();  // "La moto accélère rapidement! Vitesse: 15 km/h"
+
+// Même chose pour klaxonner
+vehicule1.klaxonner();  // "Beep beep!"
+vehicule2.klaxonner();  // "Beep beep!" (hérite sans redéfinir)
+vehicule3.klaxonner();  // "Tut tut!" (redéfini)
+            </code></pre>
+            
+            <div class="demo-container">
+                <div class="tabs">
+                    <div class="tab active" onclick="switchTab('poly-demo', this)">Démonstration</div>
+                    <div class="tab" onclick="switchTab('poly-code', this)">Code</div>
+                </div>
+                
+                <div class="tab-content active" id="poly-demo-tab">
+                    <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+                        <div>
+                            <button id="add-form-btn" class="btn">+ Ajouter une forme</button>
+                <div class="tabs">
+                    <div class="tab active" onclick="switchTab('poly-demo', this)">Démonstration</div>
+                    <div class="tab" onclick="switchTab('poly-code', this)">Code</div>
+                </div>
+                
+                <div class="tab-content active" id="poly-demo-tab">
+                    <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+                        <div>
+                            <button id="add-form-btn" class="btn">+ Ajouter une forme</button>
+                            <select id="shape-type" style="padding: 0.5rem; border-radius: 4px; margin-left: 0.5rem;">
+                                <option value="cercle">Cercle</option>
+                                <option value="rectangle">Rectangle</option>
+                                <option value="triangle">Triangle</option>
+                            </select>
+                        </div>
+                        <button id="draw-all-btn" class="btn btn-secondary">Dessiner toutes les formes</button>
+                        <button id="clear-shapes-btn" class="btn btn-warning">Effacer</button>
+                    </div>
+                    
+                    <div id="canvas" style="width: 100%; height: 300px; background-color: #f5f5f5; border-radius: 8px; position: relative; overflow: hidden;">
+                        <!-- Les formes seront dessinées ici -->
+                    </div>
+                    
+                    <div id="poly-output" style="margin-top: 1rem; background-color: white; padding: 1rem; border-radius: 4px; max-height: 150px; overflow-y: auto;">
+                        Démonstration du polymorphisme: chaque forme implémente la méthode "dessiner" différemment.
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="poly-code-tab">
+                    <div class="code-block">
+// Interface commune pour toutes les formes
+public interface Forme {
+    void dessiner();
+    double calculerSurface();
+}
+
+// Implémentations concrètes
+public class Cercle implements Forme {
+    private double rayon;
+    
+    public Cercle(double rayon) {
+        this.rayon = rayon;
+    }
+    
+    @Override
+    public void dessiner() {
+        System.out.println("Dessin d'un cercle de rayon " + rayon);
+    }
+    
+    @Override
+    public double calculerSurface() {
+        return Math.PI * rayon * rayon;
+    }
+}
+
+public class Rectangle implements Forme {
+    private double longueur;
+    private double largeur;
+    
+    public Rectangle(double longueur, double largeur) {
+        this.longueur = longueur;
+        this.largeur = largeur;
+    }
+    
+    @Override
+    public void dessiner() {
+        System.out.println("Dessin d'un rectangle de dimensions " + longueur + "x" + largeur);
+    }
+    
+    @Override
+    public double calculerSurface() {
+        return longueur * largeur;
+    }
+}
+
+public class Triangle implements Forme {
+    private double base;
+    private double hauteur;
+    
+    public Triangle(double base, double hauteur) {
+        this.base = base;
+        this.hauteur = hauteur;
+    }
+    
+    @Override
+    public void dessiner() {
+        System.out.println("Dessin d'un triangle de base " + base + " et de hauteur " + hauteur);
+    }
+    
+    @Override
+    public double calculerSurface() {
+        return (base * hauteur) / 2;
+    }
+}
+
+// Utilisation polymorphique
+public class TestForme {
+    public static void main(String[] args) {
+        // Tableau de formes de différents types
+        Forme[] formes = new Forme[3];
+        formes[0] = new Cercle(5);
+        formes[1] = new Rectangle(4, 6);
+        formes[2] = new Triangle(3, 4);
+        
+        // Appel polymorphique des méthodes
+        for (Forme forme : formes) {
+            forme.dessiner();
+            System.out.println("Surface: " + forme.calculerSurface());
+        }
+    }
+}
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Avantages du polymorphisme</h3>
+            <ul>
+                <li><strong>Flexibilité</strong> - Le même code peut traiter différents types d'objets</li>
+                <li><strong>Extensibilité</strong> - Facile d'ajouter de nouveaux types sans modifier le code existant</li>
+                <li><strong>Simplification</strong> - Permet de traiter des objets différents de manière uniforme</li>
+            </ul>
+            
+            <div class="highlight">
+                <p><strong>Concept clé:</strong> Avec le polymorphisme, vous pouvez programmer en fonction d'une interface plutôt que d'une implémentation spécifique. C'est une application du principe de conception "Program to an interface, not an implementation".</p>
+            </div>
+            
+            <button class="btn" onclick="showSection('quiz')">Continuer vers le Quiz →</button>
+        </section>
+        
+        <section id="quiz" class="section">
+            <h2>Quiz: Testez vos connaissances</h2>
+            <p>Mettez vos connaissances à l'épreuve avec ce petit quiz sur la POO en Java!</p>
+            
+            <div class="quiz-container">
+                <div id="question-container">
+                    <div class="quiz-question" id="question">Chargement des questions...</div>
+                    <div class="quiz-options" id="options"></div>
+                    <button class="btn" id="next-btn" style="display: none;">Question suivante</button>
+                    <div id="quiz-feedback" style="margin-top: 1rem;"></div>
+                </div>
+                <div id="quiz-result" style="display: none;">
+                    <h3>Résultat du quiz</h3>
+                    <p>Vous avez obtenu <span id="score">0</span> sur <span id="total">0</span>.</p>
+                    <button class="btn" onclick="resetQuiz()">Recommencer le quiz</button>
+                    <button class="btn btn-secondary" onclick="showSection('intro')">Retour à l'introduction</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Tutoriel Interactif sur la Programmation Orientée Objet en Java</p>
+        <p>&copy; 2025 - Tous droits réservés</p>
+    </footer>
+    <script src='script.js'>
+    </script>
+    </body>
+</html>
